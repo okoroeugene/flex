@@ -24,7 +24,7 @@ class Welcome extends React.Component {
                 </View>
                 <View style={{ position: "absolute", bottom: 80 }}>
                     <TouchableOpacity onPress={() => goToAuth()}>
-                        <Text>Skip >></Text>
+                        <Text style={{ color: "#00A87E" }}>Skip >></Text>
                     </TouchableOpacity>
                 </View>
             </View>

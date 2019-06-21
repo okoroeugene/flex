@@ -11,3 +11,24 @@ Navigation.events().registerAppLaunchedListener(() => {
         }
     });
 });
+
+Navigation.setDefaultOptions({
+    topBar: {
+        title: {
+            // text: 'Title',
+            fontSize: 18,
+            // color: 'red',
+            fontFamily: 'Kastelov - Axiforma Regular',
+        },
+    },
+    bottomTab: {
+        iconColor: "black",
+        selectedIconColor: "#ccc",
+        backgroundColor: "white",
+        fontFamily: "Kastelov - Axiforma Regular",
+        fontSize: 14
+    },
+    bottomTabs: {
+        titleDisplayMode: "alwaysShow"
+    }
+});

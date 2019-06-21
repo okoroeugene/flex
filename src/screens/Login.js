@@ -68,9 +68,25 @@ class Login extends React.Component {
                                 <Text style={{ paddingLeft: 30 }}>Remember me</Text>
                             </View>
                             <View style={{ marginTop: 20 }}>
-                                <Button style={{ backgroundColor: "#00A87E", height: 50 }} block>
+                                <Button
+                                    onPress={() => Navigation.push(this.props.componentId, {
+                                        component: {
+                                            name: 'flex.Terms',
+                                            options: {
+                                                topBar: {
+                                                    title: {
+                                                        text: 'Terms and Conditions'
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    })}
+                                    style={{ backgroundColor: "#00A87E", height: 50 }} block>
                                     <Text style={{ color: "white" }}>SIGN IN</Text>
                                 </Button>
+                            </View>
+                            <View style={{ alignItems: "center", marginTop: 20 }}>
+                                <Text style={{ color: "#00A87E" }}>Forgot Password</Text>
                             </View>
                         </View>
                     </View>
