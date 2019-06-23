@@ -14,12 +14,14 @@ import {
 } from 'native-base';
 import Text from '../config/AppText';
 import { Navigation } from 'react-native-navigation';
+import { goHome } from '../config/Navigation';
+import styles from '../styles';
 
 class Login extends React.Component {
     render() {
         return (
             <ScrollView>
-                <View style={{ flex: 1, padding: 30, marginTop: "1%" }}>
+                <View style={styles.container}>
                     <View style={{ alignItems: "center" }}>
                         <View>
                             <Image source={require('../imgs/hi-res-1.png')} style={{ width: 300, height: 300, resizeMode: "contain" }} />
@@ -46,21 +48,13 @@ class Login extends React.Component {
                         <View style={{ marginTop: 10 }}>
                             <Item style={{ borderColor: "#00A87E", borderRadius: 2 }} regular>
                                 <Input
-                                    style={{
-                                        fontFamily: 'Kastelov - Axiforma Regular',
-                                        fontSize: 14,
-                                        marginLeft: 10
-                                    }}
+                                    style={styles.mainInput}
                                     placeholder='Email' />
                             </Item>
-                            <Item style={{ marginTop: 10, borderColor: "#00A87E", borderRadius: 2 }} regular>
+                            <Item style={styles.inputAfter} regular>
                                 <Input
                                     secureTextEntry={true}
-                                    style={{
-                                        fontFamily: 'Kastelov - Axiforma Regular',
-                                        fontSize: 14,
-                                        marginLeft: 10
-                                    }}
+                                    style={styles.mainInput}
                                     placeholder='Password' />
                             </Item>
                             <View style={{ flexDirection: "row", marginTop: 20 }}>
@@ -69,18 +63,7 @@ class Login extends React.Component {
                             </View>
                             <View style={{ marginTop: 20 }}>
                                 <Button
-                                    onPress={() => Navigation.push(this.props.componentId, {
-                                        component: {
-                                            name: 'flex.Terms',
-                                            options: {
-                                                topBar: {
-                                                    title: {
-                                                        text: 'Terms and Conditions'
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    })}
+                                    onPress={() => goHome()}
                                     style={{ backgroundColor: "#00A87E", height: 50 }} block>
                                     <Text style={{ color: "white" }}>SIGN IN</Text>
                                 </Button>

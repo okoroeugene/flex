@@ -14,12 +14,13 @@ import {
 } from 'native-base';
 import Text from '../config/AppText';
 import { Navigation } from 'react-native-navigation';
+import styles from '../styles';
 
 class Register extends React.Component {
     render() {
         return (
             <ScrollView>
-                <View style={{ flex: 1, padding: 30, marginTop: "1%" }}>
+                <View style={styles.container}>
                     <View style={{ alignItems: "center" }}>
                         <View>
                             <Image source={require('../imgs/hi-res-1.png')} style={{ width: 300, height: 300, resizeMode: "contain" }} />
@@ -46,31 +47,19 @@ class Register extends React.Component {
                         <View style={{ marginTop: 10 }}>
                             <Item style={{ borderColor: "#00A87E", borderRadius: 2 }} regular>
                                 <Input
-                                    style={{
-                                        fontFamily: 'Kastelov - Axiforma Regular',
-                                        fontSize: 14,
-                                        marginLeft: 10
-                                    }}
+                                    style={styles.mainInput}
                                     placeholder='Email' />
                             </Item>
-                            <Item style={{ marginTop: 10, borderColor: "#00A87E", borderRadius: 2 }} regular>
+                            <Item style={styles.inputAfter} regular>
                                 <Input
                                     secureTextEntry={true}
-                                    style={{
-                                        fontFamily: 'Kastelov - Axiforma Regular',
-                                        fontSize: 14,
-                                        marginLeft: 10
-                                    }}
+                                    style={styles.mainInput}
                                     placeholder='Password' />
                             </Item>
-                            <Item style={{ marginTop: 10, borderColor: "#00A87E", borderRadius: 2 }} regular>
+                            <Item style={styles.inputAfter} regular>
                                 <Input
                                     secureTextEntry={true}
-                                    style={{
-                                        fontFamily: 'Kastelov - Axiforma Regular',
-                                        fontSize: 14,
-                                        marginLeft: 10
-                                    }}
+                                    style={styles.mainInput}
                                     placeholder='Confirm Password' />
                             </Item>
                             <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 20 }}>

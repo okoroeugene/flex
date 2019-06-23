@@ -9,6 +9,8 @@ import { Root } from 'native-base';
 import RiderProfile from './RiderProfile';
 import DriverProfile from './DriverProfile';
 import AddPayment from './AddPayment';
+import HelpCenter from './HelpCenter';
+import Drawer from './Drawer';
 
 const wrapWithToastProvider = Screen => props => (
     <Root>
@@ -17,6 +19,8 @@ const wrapWithToastProvider = Screen => props => (
 );
 
 export function registerScreens() {
+    Navigation.registerComponent('flex.Drawer', () => wrapWithToastProvider(Drawer));
+    Navigation.registerComponent('flex.HelpCenter', () => wrapWithToastProvider(HelpCenter));
     Navigation.registerComponent('flex.AddPayment', () => wrapWithToastProvider(AddPayment));
     Navigation.registerComponent('flex.DriverProfile', () => wrapWithToastProvider(DriverProfile));
     Navigation.registerComponent('flex.RiderProfile', () => wrapWithToastProvider(RiderProfile));

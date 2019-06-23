@@ -30,62 +30,104 @@ export const goToAuth = () => Navigation.setRoot({
     }
 });
 
-// export const goHome = () => Navigation.setRoot({
-//     root: {
-//         stack: {
-//             id: 'App',
-//             children: [
-//                 {
-//                     // component: {
-//                     //     name: 'cove.Home',
-//                     //     options: {
-//                     //         title: {
-//                     //             text: "Home"
-//                     //         }
-//                     //     },
-//                     // },
-//                     sideMenu: {
-//                         id: "sideMenu",
-//                         left: {
-//                             component: {
-//                                 id: "Drawer",
-//                                 name: "cove.Drawer"
-//                             },
-//                             width: 260,
-//                             height: 270,
-//                             visible: false,
-//                             enabled: true
-//                         },
-//                         center: {
-//                             stack: {
-//                                 id: "AppRoot",
-//                                 children: [{
-//                                     component: {
-//                                         id: "App",
-//                                         name: "cove.Home",
-//                                         options: {
-//                                             topBar: {
-//                                                 title: {
-//                                                     text: 'Home'
-//                                                 },
-//                                                 leftButtons: [
-//                                                     {
-//                                                         id: 'drawer',
-//                                                         icon: iconsMap["ios-menu"]
-//                                                     }
-//                                                 ],
-//                                             }
-//                                         }
-//                                     }
-//                                 }]
-//                             }
-//                         },
-//                         // right: {
-//                         //     component: {}
-//                         // }
-//                     }
-//                 }
-//             ],
-//         }
-//     }
-// })
+export const goHome = () => Navigation.setRoot({
+    root: {
+        stack: {
+            id: 'App',
+            children: [
+                {
+                    // component: {
+                    //     name: 'cove.Home',
+                    //     options: {
+                    //         title: {
+                    //             text: "Home"
+                    //         }
+                    //     },
+                    // },
+                    sideMenu: {
+                        id: "sideMenu",
+                        left: {
+                            component: {
+                                id: "Drawer",
+                                name: "flex.Drawer"
+                            },
+                            width: 260,
+                            height: 270,
+                            visible: false,
+                            enabled: true,
+                        },
+                        center: {
+                            stack: {
+                                id: "AppRoot",
+                                children: [{
+                                    component: {
+                                        id: "EditProfile",
+                                        name: "flex.EditProfile",
+                                        // options: {
+                                        //     topBar: {
+                                        //         title: {
+                                        //             text: 'Edit Profile'
+                                        //         },
+                                        //     }
+                                        // }
+                                    },
+                                    component: {
+                                        id: "RiderProfile",
+                                        name: "flex.RiderProfile",
+                                        // options: {
+                                        //     topBar: {
+                                        //         title: {
+                                        //             text: 'Rider Profile'
+                                        //         },
+                                        //     }
+                                        // }
+                                    },
+                                    component: {
+                                        id: "DriverProfile",
+                                        name: "flex.DriverProfile",
+                                        // options: {
+                                        //     topBar: {
+                                        //         title: {
+                                        //             text: 'Driver Profile'
+                                        //         },
+                                        //     }
+                                        // }
+                                    },
+                                    component: {
+                                        id: "Requests",
+                                        name: "flex.Requests",
+                                        // options: {
+                                        //     topBar: {
+                                        //         title: {
+                                        //             text: 'Requests'
+                                        //         },
+                                        //     }
+                                        // }
+                                    },
+                                    component: {
+                                        id: "Terms",
+                                        name: "flex.Terms",
+                                    }
+                                }],
+                                options: {
+                                    topBar: {
+                                        leftButtons: [
+                                            {
+                                                id: 'drawer',
+                                                icon: require('../imgs/menu_nav_line_Bullet_Hamburger-512.png')
+                                                // icon: iconsMap["ios-menu"]
+                                            }
+                                        ],
+                                    }
+                                }
+                            }
+                        },
+                        // right: {
+                        //     component: {}
+                        // }
+                    }
+                }
+            ],
+        }
+    }
+})

@@ -19,38 +19,65 @@ class AddPayment extends React.Component {
             <ScrollView>
                 <View style={{ flex: 1, padding: 10 }}>
                     <View>
-                        <Card style={{ flexDirection: "row", height: 100, alignItems: "center" }}>
+                        <Card style={{ flexDirection: "row", height: 100, alignItems: "center", borderRadius: 5 }}>
                             <View>
                                 <Image style={{ height: 60, width: 200, marginLeft: -50, resizeMode: "contain" }} source={require('../imgs/visa-5-logo-png-transparent.png')} />
                             </View>
                             <View style={{ flexDirection: "row" }}>
-                                <Text>****</Text>
+                                {/* <Text>****</Text>
                                 <Text style={{ paddingLeft: 20 }}>****</Text>
-                                <Text style={{ paddingLeft: 20 }}>****</Text>
-                                <Text style={{ paddingLeft: 20 }}>2585</Text>
+                                <Text style={{ paddingLeft: 20 }}>****</Text> */}
+                                <Text style={{ paddingLeft: 20 }}>x2585</Text>
                             </View>
                         </Card>
                     </View>
                     <View style={{ marginTop: 20 }}>
-                        <Card>
+                        <Card style={{ flexDirection: "row", height: 100, alignItems: "center", borderRadius: 5 }}>
                             <View>
                                 <Image style={{ height: 60, width: "100%" }} source={require('../imgs/visa-5-logo-png-transparent.png')} />
                             </View>
                             <View>
+                                {/* <Text>****</Text>
                                 <Text>****</Text>
+                                <Text>****</Text> */}
+                                <Text>x2585</Text>
+                            </View>
+                        </Card>
+                    </View>
+
+                    <View style={{ marginTop: 20 }}>
+                        <Card style={{ flexDirection: "row", height: 100, alignItems: "center", borderRadius: 5 }}>
+                            <View>
+                                <Image style={{ height: 60, width: "100%" }} source={require('../imgs/_American_Express-512.png')} />
+                            </View>
+                            <View>
+                                {/* <Text>****</Text>
                                 <Text>****</Text>
-                                <Text>****</Text>
-                                <Text>2585</Text>
+                                <Text>****</Text> */}
+                                <Text>x2585</Text>
                             </View>
                         </Card>
                     </View>
                 </View>
                 <View style={{ position: "absolute" }}>
-                    <Button style={{ backgroundColor: "#00A87E", height: 50 }} block>
+                    <Button
+                        onPress={() => Navigation.push(this.props.componentId, {
+                            component: {
+                                name: 'flex.HelpCenter',
+                                options: {
+                                    topBar: {
+                                        visible: false,
+                                        drawBehind: true,
+                                        animate: false
+                                    }
+                                }
+                            }
+                        })}
+                        style={{ backgroundColor: "#00A87E", height: 50 }} block>
                         <Text style={{ color: "white" }}>APPLY</Text>
                     </Button>
                 </View>
-            </ScrollView>
+            </ScrollView >
         );
     }
 }

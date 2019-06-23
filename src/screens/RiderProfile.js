@@ -77,7 +77,7 @@ class RiderProfile extends React.Component {
                             success
                             onPress={() => Navigation.push(this.props.componentId, {
                                 component: {
-                                    name: 'flex.EditProfile',
+                                    name: 'flex.Requests',
                                     options: {
                                         topBar: {
                                             visible: false,

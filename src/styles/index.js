@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        flexDirection: 'column',
-        position: 'relative',
+        padding: 30,
+        // position: "relative"
     },
     searchBar: {
         flex: 1,
@@ -35,6 +35,20 @@ const styles = StyleSheet.create({
         padding: 10,
         marginTop: 2,
     },
+    inputBefore: {
+        borderColor: "#00A87E",
+        borderRadius: 2
+    },
+    inputAfter: {
+        marginTop: 10,
+        borderColor: "#00A87E",
+        borderRadius: 2
+    },
+    mainInput: {
+        fontFamily: 'Kastelov - Axiforma Regular',
+        fontSize: 14,
+        marginLeft: 10
+    }
 })
 
 

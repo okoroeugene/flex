@@ -9,6 +9,7 @@ import { Thumbnail, Icon, Item, Button, Input } from 'native-base';
 import Text from '../config/AppText';
 import { Navigation } from 'react-native-navigation';
 import { goToAuth } from '../config/Navigation';
+import styles from '../styles';
 
 class EditProfile extends React.Component {
     render() {
@@ -39,14 +40,10 @@ class EditProfile extends React.Component {
                     </View>
 
                     <View style={{ marginTop: 20 }}>
-                        <Item style={{ borderColor: "#00A87E", borderRadius: 2 }} regular>
+                        <Item style={styles.inputBefore} regular>
                             <Icon style={{ color: "#00A87E" }} type="Ionicons" name="person" />
                             <Input
-                                style={{
-                                    fontFamily: 'Kastelov - Axiforma Regular',
-                                    fontSize: 14,
-                                    marginLeft: 10
-                                }}
+                                style={styles.mainInput}
                                 placeholder='John' />
                         </Item>
                         <Item style={{ marginTop: 10, borderColor: "#00A87E", borderRadius: 2 }} regular>
