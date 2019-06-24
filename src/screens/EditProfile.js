@@ -44,36 +44,28 @@ class EditProfile extends React.Component {
                             <Icon style={{ color: "#00A87E" }} type="Ionicons" name="person" />
                             <Input
                                 style={styles.mainInput}
+                                placeholderTextColor={"#bbb"}
                                 placeholder='John' />
                         </Item>
-                        <Item style={{ marginTop: 10, borderColor: "#00A87E", borderRadius: 2 }} regular>
+                        <Item style={styles.inputAfter} regular>
                             <Icon style={{ color: "#00A87E" }} type="Ionicons" name="person" />
                             <Input
-                                style={{
-                                    fontFamily: 'Kastelov - Axiforma Regular',
-                                    fontSize: 14,
-                                    marginLeft: 10
-                                }}
+                                style={styles.mainInput}
+                                placeholderTextColor={"#bbb"}
                                 placeholder='Doe' />
                         </Item>
-                        <Item style={{ marginTop: 10, borderColor: "#00A87E", borderRadius: 2 }} regular>
+                        <Item style={styles.inputAfter} regular>
                             <Icon style={{ color: "#00A87E" }} type="Ionicons" name="ios-mail" />
                             <Input
-                                style={{
-                                    fontFamily: 'Kastelov - Axiforma Regular',
-                                    fontSize: 14,
-                                    marginLeft: 10
-                                }}
+                                style={styles.mainInput}
+                                placeholderTextColor={"#bbb"}
                                 placeholder='john.doe@gmail.com' />
                         </Item>
-                        <Item style={{ marginTop: 10, borderColor: "#00A87E", borderRadius: 2 }} regular>
+                        <Item style={styles.inputAfter} regular>
                             <Icon style={{ color: "#00A87E" }} type="Ionicons" name="ios-call" />
                             <Input
-                                style={{
-                                    fontFamily: 'Kastelov - Axiforma Regular',
-                                    fontSize: 14,
-                                    marginLeft: 10
-                                }}
+                                style={styles.mainInput}
+                                placeholderTextColor={"#bbb"}
                                 placeholder='+234 8000 00 83' />
                         </Item>
                     </View>
@@ -118,9 +110,12 @@ class EditProfile extends React.Component {
                                     name: 'flex.RiderProfile',
                                     options: {
                                         topBar: {
-                                            visible: false,
-                                            drawBehind: true,
-                                            animate: false
+                                            title: {
+                                                text: 'Rider Profile'
+                                            }
+                                            // visible: false,
+                                            // drawBehind: true,
+                                            // animate: false
                                         }
                                     }
                                 }

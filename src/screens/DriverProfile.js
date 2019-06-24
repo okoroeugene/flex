@@ -104,9 +104,12 @@ class DriverProfile extends React.Component {
                                     name: 'flex.EditProfile',
                                     options: {
                                         topBar: {
-                                            visible: false,
-                                            drawBehind: true,
-                                            animate: false
+                                            title: {
+                                                text: 'Edit Profile'
+                                            }
+                                            // visible: false,
+                                            // drawBehind: true,
+                                            // animate: false
                                         }
                                     }
                                 }
@@ -123,9 +126,12 @@ class DriverProfile extends React.Component {
                                     name: 'flex.AddPayment',
                                     options: {
                                         topBar: {
-                                            visible: false,
-                                            drawBehind: true,
-                                            animate: false
+                                            title: {
+                                                text: 'Add Payment'
+                                            }
+                                            // visible: false,
+                                            // drawBehind: true,
+                                            // animate: false
                                         }
                                     }
                                 }

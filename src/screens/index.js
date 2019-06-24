@@ -11,6 +11,10 @@ import DriverProfile from './DriverProfile';
 import AddPayment from './AddPayment';
 import HelpCenter from './HelpCenter';
 import Drawer from './Drawer';
+import Chat from './Chat';
+import RiderLocation from './RiderLocation';
+import Requests from './Requests';
+import NavBar from '../components/NavBar';
 
 const wrapWithToastProvider = Screen => props => (
     <Root>
@@ -19,6 +23,10 @@ const wrapWithToastProvider = Screen => props => (
 );
 
 export function registerScreens() {
+    Navigation.registerComponent('flex.NavBar', () => wrapWithToastProvider(NavBar));
+    Navigation.registerComponent('flex.Requests', () => wrapWithToastProvider(Requests));
+    Navigation.registerComponent('flex.RiderLocation', () => wrapWithToastProvider(RiderLocation));
+    Navigation.registerComponent('flex.Chat', () => wrapWithToastProvider(Chat));
     Navigation.registerComponent('flex.Drawer', () => wrapWithToastProvider(Drawer));
     Navigation.registerComponent('flex.HelpCenter', () => wrapWithToastProvider(HelpCenter));
     Navigation.registerComponent('flex.AddPayment', () => wrapWithToastProvider(AddPayment));

@@ -36,9 +36,9 @@ class Terms extends React.Component {
                                 name: 'flex.EditProfile',
                                 options: {
                                     topBar: {
-                                        visible: false,
-                                        drawBehind: true,
-                                        animate: false
+                                        title: {
+                                            text: 'Edit Profile'
+                                        }
                                     }
                                 }
                             }

@@ -1,5 +1,6 @@
 // navigation.js
 import { Navigation } from 'react-native-navigation'
+import { iconsMap } from './IconsLoader';
 
 export const goToAuth = () => Navigation.setRoot({
     root: {
@@ -54,7 +55,7 @@ export const goHome = () => Navigation.setRoot({
                             width: 260,
                             height: 270,
                             visible: false,
-                            enabled: true,
+                            enabled: false
                         },
                         center: {
                             stack: {
@@ -74,52 +75,53 @@ export const goHome = () => Navigation.setRoot({
                                     component: {
                                         id: "RiderProfile",
                                         name: "flex.RiderProfile",
-                                        // options: {
-                                        //     topBar: {
-                                        //         title: {
-                                        //             text: 'Rider Profile'
-                                        //         },
-                                        //     }
-                                        // }
+                                        options: {
+                                            topBar: {
+                                                title: {
+                                                    text: 'Rider Profile'
+                                                },
+                                            }
+                                        }
                                     },
                                     component: {
                                         id: "DriverProfile",
                                         name: "flex.DriverProfile",
-                                        // options: {
-                                        //     topBar: {
-                                        //         title: {
-                                        //             text: 'Driver Profile'
-                                        //         },
-                                        //     }
-                                        // }
-                                    },
-                                    component: {
-                                        id: "Requests",
-                                        name: "flex.Requests",
-                                        // options: {
-                                        //     topBar: {
-                                        //         title: {
-                                        //             text: 'Requests'
-                                        //         },
-                                        //     }
-                                        // }
-                                    },
-                                    component: {
-                                        id: "Terms",
-                                        name: "flex.Terms",
-                                    }
-                                }],
-                                options: {
-                                    topBar: {
-                                        leftButtons: [
-                                            {
-                                                id: 'drawer',
-                                                icon: require('../imgs/menu_nav_line_Bullet_Hamburger-512.png')
-                                                // icon: iconsMap["ios-menu"]
+                                        options: {
+                                            topBar: {
+                                                title: {
+                                                    text: 'Driver Profile'
+                                                },
                                             }
-                                        ],
+                                        }
+                                    },
+                                    component: {
+                                        id: "App",
+                                        name: "flex.Requests",
+                                        options: {
+                                            topBar: {
+                                                // title: {
+                                                //     component: {
+                                                //         name: 'flex.NavBar'
+                                                //     }
+                                                // },
+                                                visible: false,
+                                                drawBehind: true,
+                                                // background: {
+                                                //     translucent: false
+                                                // },
+                                                // title: {
+                                                //     text: 'Home'
+                                                // },
+                                                leftButtons: [
+                                                    {
+                                                        id: 'drawer',
+                                                        icon: iconsMap["ios-menu"]
+                                                    }
+                                                ],
+                                            }
+                                        }
                                     }
-                                }
+                                }]
                             }
                         },
                         // right: {

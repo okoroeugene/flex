@@ -99,9 +99,12 @@ class RiderProfile extends React.Component {
                                     name: 'flex.DriverProfile',
                                     options: {
                                         topBar: {
-                                            visible: false,
-                                            drawBehind: true,
-                                            animate: false
+                                            title: {
+                                                text: 'Driver Profile'
+                                            }
+                                            // visible: false,
+                                            // drawBehind: true,
+                                            // animate: false
                                         }
                                     }
                                 }

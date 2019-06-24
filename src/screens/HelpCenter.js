@@ -27,34 +27,50 @@ class HelpCenter extends React.Component {
                         </View>
                     </View>
 
-                    <View style={{ flexDirection: "row", marginTop: 20, width: 140, justifyContent: "space-between", alignSelf: "center" }}>
-                        <Item style={{ width: "100%" }} regular>
-                            <Input placeholder='Enter your search terms' style={{ width: "100%", fontFamily: 'OpenSans-Regular', fontSize: 14 }} />
-                            <Button style={[styles.btnDefault, { width: 50, height: "100%" }]} iconRight light>
-                                <IonIcon style={{ fontSize: 30, color: "white", alignSelf: "center", paddingLeft: 16 }} name='ios-arrow-round-forward' />
+                    <View style={{ flex: 1, flexDirection: "row", marginTop: 20, justifyContent: "space-between", alignSelf: "center" }}>
+                        <Item style={{ width: "100%", borderRadius: 6 }} regular>
+                            <Input placeholder='Enter your search terms' style={{ width: "100%", fontFamily: 'Kastelov - Axiforma Regular', fontSize: 14 }} />
+                            <Button
+                                style={[styles.btnDefault, { width: 60, backgroundColor: "#00A87E", height: "100%", borderTopRightRadius: 6, borderBottomRightRadius: 6 }]} iconRight light>
+                                <Text style={{ fontSize: 12, color: "white", alignSelf: "center" }}>Search</Text>
                             </Button>
                         </Item>
                     </View>
 
-                    <View style={{ marginTop: 20 }}>
-                        <Card style={{ flexDirection: "row" }}>
+                    <TouchableOpacity
+                        onPress={() => Navigation.push(this.props.componentId, {
+                            component: {
+                                name: 'flex.Chat',
+                                options: {
+                                    topBar: {
+                                        visible: false,
+                                        drawBehind: true,
+                                        animate: false
+                                    }
+                                }
+                            }
+                        })}
+                        style={{ marginTop: 20 }}>
+                        <Card style={{ flexDirection: "row", padding: 15, borderRadius: 6 }}>
                             <Icon
                                 style={{ color: "#00A87E" }}
                                 type="Ionicons"
                                 name="ios-help-circle-outline" />
-                            <Text style={{ paddingLeft: 20 }}>Instant Chat Support</Text>
+                            <Text style={{ paddingLeft: 20, marginTop: 5 }}>Instant Chat Support</Text>
                         </Card>
-                    </View>
+                    </TouchableOpacity>
 
-                    <View style={{ marginTop: 20 }}>
-                        <Card style={{ flexDirection: "row" }}>
+                    <TouchableOpacity
+                        onPress={() => alert("you clicked!")}
+                        style={{ marginTop: 10 }}>
+                        <Card style={{ flexDirection: "row", padding: 15, borderRadius: 6 }}>
                             <Icon
                                 style={{ color: "#00A87E" }}
                                 type="Ionicons"
                                 name="ios-alert" />
-                            <Text style={{ paddingLeft: 20 }}>File a Report</Text>
+                            <Text style={{ paddingLeft: 20, marginTop: 5 }}>File a Report</Text>
                         </Card>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </ScrollView >
         );
