@@ -15,7 +15,7 @@ class Requests extends React.Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <NavBar />
+                {/* <NavBar /> */}
                 <ScrollView
                     contentContainerStyle={{ flexGrow: 1, padding: 30 }}
                 >

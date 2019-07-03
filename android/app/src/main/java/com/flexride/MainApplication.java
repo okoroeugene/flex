@@ -3,6 +3,9 @@ package com.flexride;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -40,6 +43,9 @@ public class MainApplication extends NavigationApplication {
         return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
             new MainReactPackage(),
+            new AsyncStoragePackage(),
+            new PickerPackage(),
+            new ReactNativeConfigPackage(),
             new MapsPackage(),
             new VectorIconsPackage()
         );

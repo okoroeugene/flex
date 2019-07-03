@@ -14,7 +14,16 @@ import Drawer from './Drawer';
 import Chat from './Chat';
 import RiderLocation from './RiderLocation';
 import Requests from './Requests';
+import Splash from './Splash';
 import NavBar from '../components/NavBar';
+import BackgroundCheck from './Driver/BackgroundCheck';
+import Congratulations from './Driver/Congratulations';
+import LicenseInformation from './Driver/LicenseInformation';
+import VehiclePhoto from './Driver/VehiclePhoto';
+import UploadAvatar from './Driver/UploadAvatar';
+import SSNCheck from './Driver/SSNCheck';
+import CardDetails from './CardDetails';
+import AddLocation from './AddLocation';
 
 const wrapWithToastProvider = Screen => props => (
     <Root>
@@ -22,19 +31,28 @@ const wrapWithToastProvider = Screen => props => (
     </Root>
 );
 
-export function registerScreens() {
-    Navigation.registerComponent('flex.NavBar', () => wrapWithToastProvider(NavBar));
-    Navigation.registerComponent('flex.Requests', () => wrapWithToastProvider(Requests));
-    Navigation.registerComponent('flex.RiderLocation', () => wrapWithToastProvider(RiderLocation));
-    Navigation.registerComponent('flex.Chat', () => wrapWithToastProvider(Chat));
-    Navigation.registerComponent('flex.Drawer', () => wrapWithToastProvider(Drawer));
-    Navigation.registerComponent('flex.HelpCenter', () => wrapWithToastProvider(HelpCenter));
-    Navigation.registerComponent('flex.AddPayment', () => wrapWithToastProvider(AddPayment));
-    Navigation.registerComponent('flex.DriverProfile', () => wrapWithToastProvider(DriverProfile));
-    Navigation.registerComponent('flex.RiderProfile', () => wrapWithToastProvider(RiderProfile));
-    Navigation.registerComponent('flex.EditProfile', () => wrapWithToastProvider(EditProfile));
-    Navigation.registerComponent('flex.Terms', () => wrapWithToastProvider(Terms));
-    Navigation.registerComponent('flex.Welcome', () => wrapWithToastProvider(Welcome));
-    Navigation.registerComponent('flex.Login', () => wrapWithToastProvider(Login));
-    Navigation.registerComponent('flex.Register', () => wrapWithToastProvider(Register));
+export function registerScreens(Provider = {}, store = {}) {
+    Navigation.registerComponentWithRedux('flex.CardDetails', () => wrapWithToastProvider(CardDetails), Provider, store);
+    Navigation.registerComponentWithRedux('flex.AddLocation', () => wrapWithToastProvider(AddLocation), Provider, store);
+    Navigation.registerComponentWithRedux('flex.SSNCheck', () => wrapWithToastProvider(SSNCheck), Provider, store);
+    Navigation.registerComponentWithRedux('flex.BackgroundCheck', () => wrapWithToastProvider(BackgroundCheck), Provider, store);
+    Navigation.registerComponentWithRedux('flex.Congratulations', () => wrapWithToastProvider(Congratulations), Provider, store);
+    Navigation.registerComponentWithRedux('flex.LicenseInformation', () => wrapWithToastProvider(LicenseInformation), Provider, store);
+    Navigation.registerComponentWithRedux('flex.VehiclePhoto', () => wrapWithToastProvider(VehiclePhoto), Provider, store);
+    Navigation.registerComponentWithRedux('flex.UploadAvatar', () => wrapWithToastProvider(UploadAvatar), Provider, store);
+    Navigation.registerComponentWithRedux('flex.NavBar', () => wrapWithToastProvider(NavBar), Provider, store);
+    Navigation.registerComponentWithRedux('flex.Requests', () => wrapWithToastProvider(Requests), Provider, store);
+    Navigation.registerComponentWithRedux('flex.RiderLocation', () => wrapWithToastProvider(RiderLocation), Provider, store);
+    Navigation.registerComponentWithRedux('flex.Chat', () => wrapWithToastProvider(Chat), Provider, store);
+    Navigation.registerComponentWithRedux('flex.Drawer', () => wrapWithToastProvider(Drawer), Provider, store);
+    Navigation.registerComponentWithRedux('flex.HelpCenter', () => wrapWithToastProvider(HelpCenter), Provider, store);
+    Navigation.registerComponentWithRedux('flex.AddPayment', () => wrapWithToastProvider(AddPayment), Provider, store);
+    Navigation.registerComponentWithRedux('flex.DriverProfile', () => wrapWithToastProvider(DriverProfile), Provider, store);
+    Navigation.registerComponentWithRedux('flex.RiderProfile', () => wrapWithToastProvider(RiderProfile), Provider, store);
+    Navigation.registerComponentWithRedux('flex.EditProfile', () => wrapWithToastProvider(EditProfile), Provider, store);
+    Navigation.registerComponentWithRedux('flex.Terms', () => wrapWithToastProvider(Terms), Provider, store);
+    Navigation.registerComponentWithRedux('flex.Welcome', () => wrapWithToastProvider(Welcome), Provider, store);
+    Navigation.registerComponentWithRedux('flex.Login', () => wrapWithToastProvider(Login), Provider, store);
+    Navigation.registerComponentWithRedux('flex.Register', () => wrapWithToastProvider(Register), Provider, store);
+    Navigation.registerComponentWithRedux('flex.Splash', () => wrapWithToastProvider(Splash), Provider, store);
 }

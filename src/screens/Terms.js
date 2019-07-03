@@ -23,7 +23,6 @@ class Terms extends React.Component {
                             <Text style={{ textAlign: "center" }}>{`Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum\n\nLorem ipsum Lorem ipsum Lorem ipsum `}</Text>
                         </View>
                     </View>
-
                 </ScrollView>
                 <View style={{ bottom: 10, padding: 10 }}>
                     <View style={{ flexDirection: "row", marginBottom: 30 }}>

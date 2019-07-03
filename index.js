@@ -1,22 +1,27 @@
 import { Navigation } from "react-native-navigation";
 import { registerScreens } from './src/screens';
-registerScreens();
+import { Provider } from 'react-redux';
+import store from './src/stores';
+import { goToAuth } from "./src/config/Navigation";
+
+registerScreens(Provider, store);
 
 Navigation.events().registerAppLaunchedListener(() => {
-    Navigation.setRoot({
-        root: {
-            component: {
-                name: "flex.Welcome"
-            }
-        }
-    });
+    // Navigation.setRoot({
+    //     root: {
+    //         component: {
+    //             name: "flex.Login"
+    //         }
+    //     }
+    // });
+    goToAuth();
 });
 
 Navigation.setDefaultOptions({
     topBar: {
         title: {
             // text: 'Title',
-            fontSize: 18,
+            fontSize: 16,
             // color: 'red',
             fontFamily: 'Kastelov - Axiforma Regular',
         },
@@ -26,7 +31,7 @@ Navigation.setDefaultOptions({
         selectedIconColor: "#ccc",
         backgroundColor: "white",
         fontFamily: "Kastelov - Axiforma Regular",
-        fontSize: 14
+        fontSize: 12
     },
     bottomTabs: {
         titleDisplayMode: "alwaysShow"
