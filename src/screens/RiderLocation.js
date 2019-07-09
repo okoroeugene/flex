@@ -1,4 +1,7 @@
 import React from "react";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions/index';
 import {
     StyleSheet,
     View,
@@ -18,10 +21,16 @@ import haversine from "haversine";
 import {
     Item,
     Input,
+    InputGroup,
     Icon
 } from "native-base";
 import styles from "../styles";
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import RNGooglePlaces from 'react-native-google-places';
+import AutoComplete from "./AutoComplete";
+import MapContainer from "./MapContainer";
+import MapSearch from "./MapSearch";
+import SearchResult from "./SearchResults";
 
 const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } } };
 const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } } };
@@ -38,6 +47,7 @@ class RiderLocation extends React.Component {
         super(props);
 
         this.state = {
+            inputTxt: false,
             latitude: LATITUDE,
             longitude: LONGITUDE,
             routeCoordinates: [],
@@ -53,8 +63,8 @@ class RiderLocation extends React.Component {
     }
 
     componentDidMount() {
+        this.props.getCurrentLocation();
         const { coordinate } = this.state;
-
         this.requestCameraPermission();
 
         this.watchID = navigator.geolocation.watchPosition(
@@ -102,6 +112,29 @@ class RiderLocation extends React.Component {
         navigator.geolocation.clearWatch(this.watchID);
     }
 
+    toggleSearchModal = () => {
+        this.setState({ inputTxt: true })
+    }
+
+    openSearchModal = () => {
+        RNGooglePlaces.openAutocompleteModal({
+            initialQuery: 'vestar',
+            locationRestriction: {
+                latitudeSW: 6.3670553,
+                longitudeSW: 2.7062895,
+                latitudeNE: 6.6967964,
+                longitudeNE: 4.351055
+            },
+            country: 'NG',
+            type: 'establishment'
+        }, ['placeID', 'location', 'name', 'address', 'types', 'openingHours', 'plusCode', 'rating', 'userRatingsTotal', 'viewport']
+        )
+            .then((place) => {
+                console.log(place);
+            })
+            .catch(error => console.log(error.message));
+    }
+
     getMapRegion = () => ({
         latitude: this.state.latitude,
         longitude: this.state.longitude,
@@ -137,38 +170,14 @@ class RiderLocation extends React.Component {
 
     render() {
         const width = Dimensions.get('screen').width;
-        const searchBarStyle = StyleSheet.flatten([styles.searchBar, {
-            top: 80,
-            width: width - 30,
-            elevation: 5
-        }])
+        // const searchBarStyle = StyleSheet.flatten([styles.searchBar, {
+        //     top: 80,
+        //     width: width - 30,
+        //     elevation: 5
+        // }])
         return (
-            <View style={styles.mapContainer}>
-                <View style={searchBarStyle}>
-                    <Item style={[{ backgroundColor: "white" }, styles.cardShadow]} regular>
-                        <Text style={{ color: "#bbb", paddingLeft: 8 }}>From</Text>
-                        <Input
-                            style={[styles.mainInput]}
-                            placeholderTextColor={"#bbb"}
-                        />
-                        <TouchableOpacity>
-                            <Icon style={{ color: "#bbb" }} type="Ionicons" name="locate" />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Icon style={{ color: "#bbb" }} type="Ionicons" name="mic" />
-                        </TouchableOpacity>
-                    </Item>
-                    <Item style={[{ backgroundColor: "white", position: "relative", bottom: 10 }, styles.cardShadow]} regular>
-                        <Text style={{ color: "#bbb", paddingLeft: 8 }}>To</Text>
-                        <Input
-                            style={[styles.mainInput]}
-                            placeholderTextColor={"#bbb"}
-                        />
-                        <TouchableOpacity>
-                            <Icon style={{ color: "#bbb" }} type="Ionicons" name="mic" />
-                        </TouchableOpacity>
-                    </Item>
-                </View>
+            <View style={{ flex: 1 }}>
+                {/* {this.state.inputTxt ? <AutoComplete /> : null} */}
                 {/* <GooglePlacesAutocomplete
                     placeholder='Enter Location'
                     minLength={2}
@@ -195,33 +204,33 @@ class RiderLocation extends React.Component {
                     currentLocation={false}
                 /> */}
 
-                <MapView
-                    style={styles.map}
-                    provider={PROVIDER_GOOGLE}
-                    showUserLocation
-                    followUserLocation
-                    loadingEnabled
-                    region={this.getMapRegion()}
-                >
-                    <Polyline coordinates={this.state.routeCoordinates} strokeWidth={5} />
-                    <Marker.Animated
-                        ref={marker => {
-                            this.marker = marker;
-                        }}
+                {!this.props.home.toggle ? <View style={{ flex: 1 }}>
+                    <MapContainer
+                        region={this.getMapRegion()}
+                        routeCoordinates={this.state.routeCoordinates}
                         coordinate={this.state.coordinate}
                     />
-                </MapView>
-
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={[styles.bubble, styles.button]}>
-                        <Text style={styles.bottomBarContent}>
-                            {parseFloat(this.state.distanceTravelled).toFixed(2)} km
-            </Text>
-                    </TouchableOpacity>
-                </View>
+                    <MapSearch
+                        toggleSearchModal={this.props.toggleSearchModal}
+                    // getAddressPredictions={this.props.getAddressPredictions}
+                    // getInputData={this.props.getInputData}
+                    /></View> : <SearchResult
+                        inputData={this.props.home.inputData}
+                        resultTypes={this.props.home.resultTypes}
+                        predictions={this.props.home.predictions}
+                        getAddressPredictions={this.props.getAddressPredictions}
+                        getInputData={this.props.getInputData}
+                        closeToggleModal={this.props.closeToggleModal}
+                    />}
             </View>
         );
     }
 }
 
-export default RiderLocation;
+const mapStateToProps = state => ({
+    home: state.home
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(RiderLocation);

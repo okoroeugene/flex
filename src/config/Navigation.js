@@ -64,6 +64,10 @@ export const goHome = () => Navigation.setRoot({
                                 id: "AppRoot",
                                 children: [{
                                     component: {
+                                        id: "RiderLocation",
+                                        name: "flex.RiderLocation",
+                                    },
+                                    component: {
                                         id: "DriverProfile",
                                         name: "flex.DriverProfile",
                                         options: {
@@ -71,6 +75,12 @@ export const goHome = () => Navigation.setRoot({
                                                 title: {
                                                     text: 'Driver Profile'
                                                 },
+                                                leftButtons: [
+                                                    {
+                                                        id: 'drawer',
+                                                        icon: iconsMap["ios-menu"]
+                                                    }
+                                                ],
                                             }
                                         }
                                     },

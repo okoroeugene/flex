@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     inputWrapper: {
         marginLeft: 15,
         marginRight: 10,
-        marginTop: 20,
+        marginTop: 10,
         marginBottom: 0,
         backgroundColor: "#fff",
         opacity: 0.9,

@@ -117,6 +117,19 @@ export default class Drawer extends Component {
                                         title: {
                                             text: 'Add Payment'
                                         }
+                                    },
+                                    sideMenu: {
+                                        left: {
+                                            component: {
+                                                id: "Drawer",
+                                                name: "flex.Drawer",
+                                                options: {
+                                                    topBar: {
+                                                        height: 0
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }

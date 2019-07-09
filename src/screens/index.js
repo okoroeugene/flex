@@ -24,6 +24,7 @@ import UploadAvatar from './Driver/UploadAvatar';
 import SSNCheck from './Driver/SSNCheck';
 import CardDetails from './CardDetails';
 import AddLocation from './AddLocation';
+import AutoComplete from './AutoComplete';
 
 const wrapWithToastProvider = Screen => props => (
     <Root>
@@ -32,6 +33,7 @@ const wrapWithToastProvider = Screen => props => (
 );
 
 export function registerScreens(Provider = {}, store = {}) {
+    Navigation.registerComponentWithRedux('flex.AutoComplete', () => wrapWithToastProvider(AutoComplete), Provider, store);
     Navigation.registerComponentWithRedux('flex.CardDetails', () => wrapWithToastProvider(CardDetails), Provider, store);
     Navigation.registerComponentWithRedux('flex.AddLocation', () => wrapWithToastProvider(AddLocation), Provider, store);
     Navigation.registerComponentWithRedux('flex.SSNCheck', () => wrapWithToastProvider(SSNCheck), Provider, store);

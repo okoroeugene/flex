@@ -3,6 +3,8 @@ import * as registerActions from './register';
 import * as userActions from './user';
 import * as appActions from './app';
 import * as driverActions from './driver';
+import * as mapActions from './maps';
+import * as homeActions from './home';
 
 export const doLogin = loginActions.doLogin,
     doRegister = registerActions.doRegister,
@@ -17,4 +19,9 @@ export const doLogin = loginActions.doLogin,
     editDriver = driverActions.editDriver,
     fetchUser = userActions.fetchUser,
     addCard = userActions.addCard,
-    avatar = driverActions.avatar
+    avatar = driverActions.avatar,
+    getCurrentLocation = mapActions.getCurrentLocation,
+    toggleSearchModal = homeActions.toggleSearchResultModal,
+    closeToggleModal = homeActions.unToggleSearchResultModal,
+    getAddressPredictions = homeActions.getAddressPredictions,
+    getInputData = homeActions.getInputData

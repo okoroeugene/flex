@@ -23,14 +23,14 @@ Navigation.setDefaultOptions({
             // text: 'Title',
             fontSize: 16,
             // color: 'red',
-            fontFamily: 'Kastelov - Axiforma Regular',
+            fontFamily: 'NoirPro-Regular',
         },
     },
     bottomTab: {
         iconColor: "black",
         selectedIconColor: "#ccc",
         backgroundColor: "white",
-        fontFamily: "Kastelov - Axiforma Regular",
+        fontFamily: "NoirPro-Regular",
         fontSize: 12
     },
     bottomTabs: {

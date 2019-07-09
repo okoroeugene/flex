@@ -62,30 +62,6 @@ const styles = StyleSheet.create({
         padding: 20,
         opacity: .9,
     },
-    setPickupButton: {
-        backgroundColor: 'black',
-        color: 'white',
-        padding: 10,
-        marginTop: 2,
-    },
-    inputBefore: {
-        borderColor: "#00A87E",
-        borderRadius: 2
-    },
-    inputAfter: {
-        marginTop: 10,
-        borderColor: "#00A87E",
-        borderRadius: 2
-    },
-    mainInput: {
-        fontFamily: 'NoirPro-Regular',
-        fontSize: 16,
-        color: '#5C5C5C',
-        marginLeft: 10
-    },
-    textBold: {
-        fontFamily: "Kastelov - Axiforma Heavy"
-    },
     searchBar: {
         flex: 1,
         flexDirection: 'column',
@@ -160,7 +136,7 @@ const styles = StyleSheet.create({
     inputWrapper: {
         marginLeft: 15,
         marginRight: 10,
-        marginTop: 20,
+        marginTop: 10,
         marginBottom: 0,
         backgroundColor: "#fff",
         opacity: 0.9,
