@@ -45,7 +45,7 @@ export const goHome = () => Navigation.setRoot({
                                 name: "flex.Drawer",
                                 options: {
                                     topBar: {
-                                        height: 0,
+                                        // height: 0,
                                         // drawBehind: true,
                                         // background: {
                                         //     blur: true,
@@ -54,10 +54,10 @@ export const goHome = () => Navigation.setRoot({
                                     }
                                 }
                             },
-                            width: 260,
-                            height: 270,
-                            visible: false,
-                            enabled: false
+                            // width: 260,
+                            // height: 270,
+                            // visible: false,
+                            // enabled: false
                         },
                         center: {
                             stack: {
@@ -170,6 +170,13 @@ export const goHome = () => Navigation.setRoot({
                             //     }
                             // }
                         },
+                        options: {
+                            sideMenu: {
+                                left: {
+                                    
+                                }
+                            }
+                        }
                     }
                 }
             ],

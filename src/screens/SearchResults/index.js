@@ -4,12 +4,12 @@ import {
     FlatList,
     TouchableOpacity
 } from 'react-native';
-import { Input, Item, List, Icon, Left, Body, ListItem } from 'native-base';
+import { Input, Item, List, Icon, Left, Body, ListItem, Spinner } from 'native-base';
 import styles from './SearchResultStyles';
 import mainStyles from '../../styles';
 import Text from '../../config/AppText';
 
-const SearchResult = ({ inputData, resultTypes, predictions, getInputData, getAddressPredictions, closeToggleModal }) => {
+const SearchResult = ({ inputData, resultTypes, predictions, getInputData, getAddressPredictions, closeToggleModal, searching, error }) => {
     function handleSelectedAddress(placeID) {
         getSelectedAddress(placeID)
     }
@@ -44,6 +44,16 @@ const SearchResult = ({ inputData, resultTypes, predictions, getInputData, getAd
                     </TouchableOpacity>}
                 </Item>
             </View>
+
+            {searching && <View style={{ marginTop: 30, alignItems: "center" }}>
+                <Spinner size='small' />
+                <Text>Please wait...</Text>
+            </View>}
+
+            {error && !searching && <View style={{ width: "90%", marginTop: 30, alignItems: "center", padding: 20, flexDirection: "row" }}>
+                <Icon type='Ionicons' name='ios-information-circle-outline' />
+                <Text style={{ paddingLeft: 20 }}>{error}</Text>
+            </View>}
 
             <View style={styles.searchResultsWrapper}>
                 <List

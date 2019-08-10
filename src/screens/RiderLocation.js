@@ -54,8 +54,8 @@ class RiderLocation extends React.Component {
             distanceTravelled: 0,
             prevLatLng: {},
             coordinate: new AnimatedRegion({
-                latitude: LATITUDE,
-                longitude: LONGITUDE,
+                latitude: this.props.home.location.coords.latitude || 0,
+                longitude: this.props.home.location.coords.longitude || 0,
                 latitudeDelta: 0,
                 longitudeDelta: 0
             })
@@ -136,8 +136,8 @@ class RiderLocation extends React.Component {
     }
 
     getMapRegion = () => ({
-        latitude: this.state.latitude,
-        longitude: this.state.longitude,
+        latitude: this.props.home.location.coords.latitude || 0,
+        longitude: this.props.home.location.coords.longitude || 0,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA
     });
@@ -209,18 +209,20 @@ class RiderLocation extends React.Component {
                         region={this.getMapRegion()}
                         routeCoordinates={this.state.routeCoordinates}
                         coordinate={this.state.coordinate}
+                        selectedAddress={this.props.home.selectedAddress}
                     />
                     <MapSearch
                         toggleSearchModal={this.props.toggleSearchModal}
-                    // getAddressPredictions={this.props.getAddressPredictions}
-                    // getInputData={this.props.getInputData}
-                    /></View> : <SearchResult
+                    />
+                </View> : <SearchResult
                         inputData={this.props.home.inputData}
                         resultTypes={this.props.home.resultTypes}
                         predictions={this.props.home.predictions}
                         getAddressPredictions={this.props.getAddressPredictions}
                         getInputData={this.props.getInputData}
                         closeToggleModal={this.props.closeToggleModal}
+                        searching={this.props.home.searching}
+                        error={this.props.home.error}
                     />}
             </View>
         );

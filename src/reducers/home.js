@@ -1,6 +1,13 @@
 import constants from '../constants';
 
-export default function homeReducer(state = {}, action) {
+const initialState = {
+    searching: false,
+    location: {
+        coords: {}
+    },
+    selectedAddress: {}
+}
+export default function homeReducer(state = initialState, action) {
     switch (action.type) {
         case constants.GET_CURRENT_LOCATION:
             return Object.assign({}, state, {
@@ -9,6 +16,7 @@ export default function homeReducer(state = {}, action) {
 
         case constants.GET_INPUT:
             return Object.assign({}, state, {
+                searching: true,
                 inputData: {
                     pickUp: action.payload.key == 'pickUp' ? action.payload.value : undefined,
                     dropOff: action.payload.key == 'dropOff' ? action.payload.value : undefined
@@ -22,15 +30,41 @@ export default function homeReducer(state = {}, action) {
             })
         case constants.UNTOGGLE_SEARCH_RESULT:
             return Object.assign({}, state, {
-                toggle: false
+                toggle: false,
+                searching: false,
+                predictions: undefined,
+                error: undefined
             })
         case constants.GET_ADDRESS_PREDICTIONS:
             return Object.assign({}, state, {
-                predictions: action.payload
+                searching: false,
+                predictions: action.payload,
+                error: undefined
+            })
+        case constants.GET_ADDRESS_PREDICTIONS_ERROR:
+            return Object.assign({}, state, {
+                searching: false,
+                error: action.payload,
+                predictions: undefined
             })
         case constants.GET_SELECTED_ADDRESS:
             return Object.assign({}, state, {
-                selectedAddress: action.payload
+                selectedAddress: {
+                    pickUp: state.resultTypes == 'pickUp' ? action.payload : undefined,
+                    dropOff: state.resultTypes == 'dropOff' ? action.payload : undefined
+                }
+            })
+        case constants.GET_SELECTED_ADDRESS_ERROR:
+            return Object.assign({}, state, {
+                error: action.payload
+            })
+        case constants.GET_DISTANCE_MATRIX:
+            return Object.assign({}, state, {
+                distanceMatrix: action.payload
+            })
+        case constants.GET_DISTANCE_MATRIX_ERROR:
+            return Object.assign({}, state, {
+                error: action.payload
             })
         default:
             return state;

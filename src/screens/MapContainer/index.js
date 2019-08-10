@@ -26,11 +26,8 @@ const LATITUDE_DELTA = 0.009;
 const LONGITUDE_DELTA = 0.009;
 const LATITUDE = 37.78825;
 const LONGITUDE = -122.4324;
-const MapContainer = ({ region, routeCoordinates, coordinate }) => {
-    let isMapReady = false;
-    function onMapLayout() {
-        isMapReady = true;
-    }
+const MapContainer = ({ region, routeCoordinates, coordinate, selectedAddress }) => {
+    const { pickUp, dropOff } = selectedAddress;
     return (
         <View style={styles.mapContainer}>
             <MapView
@@ -42,14 +39,36 @@ const MapContainer = ({ region, routeCoordinates, coordinate }) => {
                 // onRegionChange
                 region={region}
             >
-                {/* {isMapReady ? alert('sss') : null} */}
-                <Polyline coordinates={routeCoordinates} strokeWidth={5} />
+                {/* <Polyline coordinates={routeCoordinates} strokeWidth={5} /> */}
                 <Marker.Animated
                     ref={marker => {
                         this.marker = marker;
                     }}
                     coordinate={coordinate}
                 />
+
+                {pickUp &&
+                    <MapView.Marker
+                        coordinate={{ latitude: pickUp.latitude, longitude: pickUp.longitude }}
+                        pinColor="green"
+                    />
+                }
+                {dropOff &&
+                    <MapView.Marker
+                        coordinate={{ latitude: dropOff.latitude, longitude: dropOff.longitude }}
+                        pinColor="blue"
+                    />
+                }
+
+                {/* {
+                    nearByDrivers && nearByDrivers.map((marker, index) =>
+                        <MapView.Marker
+                            key={index}
+                            coordinate={{ latitude: marker.coordinate.coordinates[1], longitude: marker.coordinate.coordinates[0] }}
+                            image={carMarker}
+                        />
+                    )
+                } */}
 
             </MapView>
 

@@ -2,6 +2,7 @@
 import constants from "../constants";
 import { Dimensions } from "react-native"
 import RNGooglePlaces from "react-native-google-places";
+import Axios from "axios";
 
 const {
     GET_CURRENT_LOCATION,
@@ -9,8 +10,11 @@ const {
     TOGGLE_SEARCH_RESULT,
     UNTOGGLE_SEARCH_RESULT,
     GET_ADDRESS_PREDICTIONS,
+    GET_ADDRESS_PREDICTIONS_ERROR,
     GET_SELECTED_ADDRESS,
+    GET_SELECTED_ADDRESS_ERROR,
     GET_DISTANCE_MATRIX,
+    GET_DISTANCE_MATRIX_ERROR,
     GET_FARE,
     BOOK_CAR,
     GET_NEARBY_DRIVERS
@@ -77,12 +81,21 @@ export function getAddressPredictions() {
             }
         )
             .then((results) =>
-                dispatch({
-                    type: GET_ADDRESS_PREDICTIONS,
-                    payload: results
-                })
+                setTimeout(() => {
+                    dispatch({
+                        type: GET_ADDRESS_PREDICTIONS,
+                        payload: results
+                    })
+                }, 2000)
             )
-            .catch((error) => console.log(error.message));
+            .catch((error) =>
+                setTimeout(() => {
+                    dispatch({
+                        type: GET_ADDRESS_PREDICTIONS_ERROR,
+                        payload: error.message
+                    })
+                }, 2000)
+            );
     };
 }
 
@@ -104,44 +117,57 @@ export function getSelectedAddress(payload) {
                     payload: results
                 })
             })
-            // .then(()=>{
-            // 	//Get the distance and time
-            // 	if(store().home.selectedAddress.selectedPickUp && store().home.selectedAddress.selectedDropOff){
-            // 		request.get("https://maps.googleapis.com/maps/api/distancematrix/json")
-            // 		.query({
-            // 			origins:store().home.selectedAddress.selectedPickUp.latitude + "," + store().home.selectedAddress.selectedPickUp.longitude,
-            // 			destinations:store().home.selectedAddress.selectedDropOff.latitude + "," + store().home.selectedAddress.selectedDropOff.longitude,
-            // 			mode:"driving",
-            // 			key:"AIzaSyDUYbTR-3PDWPhgxjENs4yf35g2eHc641s"
-            // 		})
-            // 		.finish((error, res)=>{
-            // 			dispatch({
-            // 				type:GET_DISTANCE_MATRIX,
-            // 				payload:res.body
-            // 			});
-            // 		})
-            // 	}
-            // 	setTimeout(function(){
-            // 		if(store().home.selectedAddress.selectedPickUp && store().home.selectedAddress.selectedDropOff){
-            // 			const fare = calculateFare(
-            // 				dummyNumbers.baseFare,
-            // 				dummyNumbers.timeRate,
-            // 				store().home.distanceMatrix.rows[0].elements[0].duration.value,
-            // 				dummyNumbers.distanceRate,
-            // 				store().home.distanceMatrix.rows[0].elements[0].distance.value,
-            // 				dummyNumbers.surge,
-            // 			);
-            // 			dispatch({
-            // 				type:GET_FARE,
-            // 				payload:fare
-            // 			})
-            // 		}
+            .then(() => {
+                //Get the distance and time
+                if (store().home.selectedAddress.pickUp && store().home.selectedAddress.dropOff) {
+                    let query = {
+                        origins: store().home.selectedAddress.pickUp.latitude + "," + store().home.selectedAddress.pickUp.longitude,
+                        destinations: store().home.selectedAddress.pickUp.latitude + "," + store().home.selectedAddress.pickUp.longitude,
+                        mode: "driving",
+                        key: "AIzaSyDUYbTR-3PDWPhgxjENs4yf35g2eHc641s"
+                    }
+                    Axios.get('https://maps.googleapis.com/maps/api/distancematrix/json', query)
+                        .then(response => {
+                            dispatch({
+                                type: GET_DISTANCE_MATRIX,
+                                payload: response.body
+                            });
+                        })
+                        .catch(err => {
+                            dispatch({
+                                type: GET_DISTANCE_MATRIX_ERROR,
+                                payload: err
+                            });
+                        })
+                }
+                setTimeout(function () {
+                    if (store().home.selectedAddress.pickUp && store().home.selectedAddress.dropOff) {
+                        const fare = calculateFare(
+                            dummyNumbers.baseFare,
+                            dummyNumbers.timeRate,
+                            store().home.distanceMatrix.rows[0].elements[0].duration.value,
+                            dummyNumbers.distanceRate,
+                            store().home.distanceMatrix.rows[0].elements[0].distance.value,
+                            dummyNumbers.surge,
+                        );
+                        dispatch({
+                            type: GET_FARE,
+                            payload: fare
+                        })
+                    }
 
 
-            // 	},2000)
+                }, 2000)
 
-            // })
-            .catch((error) => console.log(error.message));
+            })
+            .catch((error) =>
+                setTimeout(() => {
+                    dispatch({
+                        type: GET_SELECTED_ADDRESS_ERROR,
+                        payload: error.message
+                    })
+                }, 2000)
+            );
     }
 }
 
@@ -196,42 +222,6 @@ function handleGetInputDate(state, action) {
             }
         }
     });
-}
-
-function handleToggleSearchResult(state, action) {
-    if (action.payload === "pickUp") {
-        return update(state, {
-            resultTypes: {
-                pickUp: {
-                    $set: true,
-                },
-                dropOff: {
-                    $set: false
-                }
-            },
-            predictions: {
-                $set: {}
-            }
-
-        });
-    }
-    if (action.payload === "dropOff") {
-        return update(state, {
-            resultTypes: {
-                pickUp: {
-                    $set: false,
-                },
-                dropOff: {
-                    $set: true
-                }
-            },
-            predictions: {
-                $set: {}
-            }
-
-        });
-    }
-
 }
 
 
